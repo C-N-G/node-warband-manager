@@ -1,4 +1,4 @@
-const { exec, spawn } = require('child_process');
+const { spawn } = require('child_process');
 
 // const cmd = "wineconsole --backend=curses /home/cormac/nw_server/mb_warband_dedicated.exe -r NW_Sample_Duel.txt -m Napoleonic Wars";
 // exec(cmd, (error, stdout, stderr) => {
@@ -16,7 +16,13 @@ const { exec, spawn } = require('child_process');
 // set_map mp_french_farm
 // scn_mp_french_farm.sco  
 
-const ls = spawn("wineconsole", ["--backend=curses /home/cormac/nw_server/mb_warband_dedicated.exe", "-r NW_Sample_Duel.txt", "-m Napoleonic Wars"]);
+const nw_server = spawn("wineconsole", [
+  "--backend=curses", "/home/cormac/nw_server/mb_warband_dedicated.exe", 
+  "-r", "NW_Sample_Duel.txt", 
+  "-m", "Napoleonic Wars"
+], {
+  shell:true
+});
 
 ls.stdout.on("data", data => {
     console.log(`stdout: ${data}`);
