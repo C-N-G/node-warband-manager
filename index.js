@@ -47,4 +47,8 @@ nw_server.on('error', (error) => {
 nw_server.on("close", code => {
   console.log(`child process exited with code ${code}`);
 });
+
+setTimeout(() => {
+  nw_server.kill('SIGINT');
+}, 20*1000);
  
