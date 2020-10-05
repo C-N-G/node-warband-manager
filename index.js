@@ -32,6 +32,7 @@ nw_server.stdout.on("data", data => {
       console.log(output[i].trim());
     }
     output = output[output.length - 1];
+    console.log(`PID IS ${nw_server.pid}`);
   }
   output = output + data;
 });
