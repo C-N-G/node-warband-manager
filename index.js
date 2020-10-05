@@ -23,7 +23,7 @@ const nw_server = spawn("wineconsole", [
   "-m", "Napoleonic Wars"
 ], {
   shell: true,
-  detatched: true
+  detached: true
 });
 
 let output = '';
