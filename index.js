@@ -27,10 +27,11 @@ const nw_server = spawn("wineconsole", [
 let output = '';
 nw_server.stdout.on("data", data => {
   if (data == ' ') {
-    console.log(`stdout: ${output}`);
+    console.log(`output: ${output}`);
     output = '';
   }
   output = output + data;
+  console.log(`stdout: ${data}`);
 });
 
 nw_server.stderr.on("data", data => {
