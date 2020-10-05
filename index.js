@@ -59,18 +59,13 @@ function start_server() {
 
 }
 
-// setTimeout(() => {
-  
-// }, 20*1000);
-
 const restartIntervalInHours = 24;
 
 setInterval(() => {
   if (nw_server.pid) {
     process.kill(-nw_server.pid); // note - before pid. This converts a pid to a group of pids for process kill() method.
   }
-}, 30*1000);
-// }, restartIntervalInHours*60*60*1000);
+}, restartIntervalInHours*60*60*1000);
 
 start_server();
  
