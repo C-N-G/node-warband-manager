@@ -1,3 +1,4 @@
+const process = require('process');
 const { spawn } = require('child_process');
 
 // const cmd = "wineconsole --backend=curses /home/cormac/nw_server/mb_warband_dedicated.exe -r NW_Sample_Duel.txt -m Napoleonic Wars";
@@ -21,7 +22,8 @@ const nw_server = spawn("wineconsole", [
   "-r", "NW_Sample_Duel.txt", 
   "-m", "Napoleonic Wars"
 ], {
-  shell:true
+  shell: true,
+  detatched: true
 });
 
 let output = '';
@@ -50,6 +52,6 @@ nw_server.on("close", code => {
 });
 
 setTimeout(() => {
-  nw_server.kill('SIGINT');
+  process.kill(-nw_server.pid); // note - before pid. This converts a pid to a group of pids for process kill() method.
 }, 20*1000);
  
