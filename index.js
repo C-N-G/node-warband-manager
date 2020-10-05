@@ -24,20 +24,25 @@ const nw_server = spawn("wineconsole", [
   shell:true
 });
 
+let output = '';
 nw_server.stdout.on("data", data => {
-    console.log(`stdout: ${data}`);
+  if (data == ' ') {
+    console.log(`stdout: ${output}`);
+    output = '';
+  }
+  output = output + data;
 });
 
 nw_server.stderr.on("data", data => {
-    console.log(`stderr: ${data}`);
+  console.log(`stderr: ${data}`);
 });
 
 nw_server.on('error', (error) => {
-    console.log(`error: ${error.message}`);
+  console.log(`error: ${error.message}`);
 });
 
 nw_server.on("close", code => {
-    console.log(`child process exited with code ${code}`);
+  console.log(`child process exited with code ${code}`);
 });
  
 
