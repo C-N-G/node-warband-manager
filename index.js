@@ -26,12 +26,12 @@ const nw_server = spawn("wineconsole", [
 
 let output = '';
 nw_server.stdout.on("data", data => {
-  if (data == ' ') {
+  if (output.length > 40) {
     console.log(`output: ${output}`);
     output = '';
   }
   output = output + data;
-  console.log(`stdout: ${data}`);
+  // console.log(`stdout: ${data}`);
 });
 
 nw_server.stderr.on("data", data => {
@@ -46,4 +46,3 @@ nw_server.on("close", code => {
   console.log(`child process exited with code ${code}`);
 });
  
-
