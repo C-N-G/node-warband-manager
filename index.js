@@ -24,10 +24,15 @@ const nw_server = spawn("wineconsole", [
   shell:true
 });
 
-let output = '';
+let output = '', temp = '';
 nw_server.stdout.on("data", data => {
-  if (output.length > 40) {
-    console.log(`output: ${output}`);
+  if (output.includes('\n')) {
+  console.log('TRUIE');
+}
+  if (output.length > 2000) {
+    output = output.split('\n');
+    temp = output[output.length - 1];
+    console.log(output.trim());
     output = '';
   }
   output = output + data;
