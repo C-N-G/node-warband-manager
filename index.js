@@ -31,7 +31,7 @@ nw_server.stdout.on("data", data => {
 }
   if (output.length > 2000) {
     output = output.split('\n');
-    for (let i = 0; i < array.length - 1; i++) {
+    for (let i = 0; i < output.length - 1; i++) {
       console.log(output[i].trim());
     }
     output = output[output.length - 1];
