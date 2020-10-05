@@ -13,7 +13,7 @@ const { spawn } = require('child_process');
 //   console.log(`stdout: ${stdout}`);
 // });
 
-const ls = spawn("wineconsole", ["--backend=curses", "'/home/cormac/Mount&Blade Warband Napoleonic Wars Dedicated/mb_warband_dedicated.exe'", "-r NW_Sample_Duel.txt"]);
+const ls = spawn("wineconsole", ["--backend=curses '/home/cormac/Mount&Blade Warband Napoleonic Wars Dedicated/mb_warband_dedicated.exe' -r NW_Sample_Duel.txt"]);
 
 ls.stdout.on("data", data => {
     console.log(`stdout: ${data}`);
