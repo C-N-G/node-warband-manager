@@ -15,7 +15,9 @@ const { spawn } = require('child_process');
 // });
 
 // set_map mp_french_farm
-// scn_mp_french_farm.sco  
+// scn_mp_french_farm.sco 
+
+const showConsoleOutput = false;
 
 let nw_server;
 
@@ -34,6 +36,9 @@ function start_server() {
   
   let output = '';
   nw_server.stdout.on("data", data => {
+
+    if (!showConsoleOutput) return;
+
     if (output.length > 2000) {
       output = output.split('\n');
       for (let i = 0; i < output.length - 1; i++) {
@@ -42,6 +47,7 @@ function start_server() {
       output = output[output.length - 1];
     }
     output = output + data;
+
   });
   
   nw_server.stderr.on("data", data => {
