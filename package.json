@@ -1,0 +1,22 @@
+{
+  "name": "node-warband-manager",
+  "version": "1.0.0",
+  "description": "Node.js server manager for mount and blade warband",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C-N-G/node-warband-manager.git"
+  },
+  "keywords": [
+    "warband"
+  ],
+  "author": "Cormac Gudge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C-N-G/node-warband-manager/issues"
+  },
+  "homepage": "https://github.com/C-N-G/node-warband-manager#readme"
+}
