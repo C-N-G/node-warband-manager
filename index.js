@@ -24,19 +24,19 @@ const nw_server = spawn("wineconsole", [
   shell:true
 });
 
-ls.stdout.on("data", data => {
+nw_server.stdout.on("data", data => {
     console.log(`stdout: ${data}`);
 });
 
-ls.stderr.on("data", data => {
+nw_server.stderr.on("data", data => {
     console.log(`stderr: ${data}`);
 });
 
-ls.on('error', (error) => {
+nw_server.on('error', (error) => {
     console.log(`error: ${error.message}`);
 });
 
-ls.on("close", code => {
+nw_server.on("close", code => {
     console.log(`child process exited with code ${code}`);
 });
  
