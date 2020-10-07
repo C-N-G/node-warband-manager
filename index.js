@@ -21,9 +21,14 @@ const showConsoleOutput = false;
 
 let nw_server;
 
+function get_time() {
+  const now = new Date();
+  return `[${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}]`;
+}
+
 function start_server() {
 
-  console.log('Starting server');
+  console.log(get_time(), 'Starting server');
 
   nw_server = spawn("wineconsole", [
     "--backend=curses", "/home/cormac/nw_server/mb_warband_dedicated.exe", 
@@ -59,7 +64,7 @@ function start_server() {
   });
   
   nw_server.on("close", code => {
-    console.log(`child process exited with code ${code}`);
+    console.log(get_time(), `child process exited with code ${code}`);
     start_server();
   });
 
