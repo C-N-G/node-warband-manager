@@ -1,2 +1,2 @@
 # node-warband-manager
-Node.js Manager for Mount &amp; Blade Warband Servers
+Node.js Manager for Mount &amp; Blade Warband Napoleonic Wars Servers
