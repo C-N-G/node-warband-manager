@@ -18,6 +18,8 @@ const { spawn } = require('child_process');
 // scn_mp_french_farm.sco 
 
 const showConsoleOutput = false;
+const restartIntervalInHours = 24;
+const restartInterval = restartIntervalInHours*60*60*1000
 
 let nw_server;
 
@@ -70,13 +72,25 @@ function start_server() {
 
 }
 
-const restartIntervalInHours = 24;
+function start_automatic_restart(restartHour) {
+  let today = new Date()
+  let tomorrow = new Date()
+  
+  tomorrow.setDate(today.getDate() + 1)
+  tomorrow.setHours(restartHour, 0, 0)
+  
+  let msToRestart = tomorrow.getTime() - today.getTime()
+  setTimeout(() => {
+    kill_server()
+    setInterval(kill_server, restartInterval);
+  }, msToRestart);
+}
 
-setInterval(() => {
+function kill_server() {
   if (nw_server.pid) {
     process.kill(-nw_server.pid); // note - before pid. This converts a pid to a group of pids for process kill() method.
   }
-}, restartIntervalInHours*60*60*1000);
+}
 
 start_server();
- 
+start_automatic_restart(5)
