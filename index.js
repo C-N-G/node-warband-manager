@@ -1,3 +1,5 @@
 const server = require("./server.js");
+const logger = require("./logger.js");
 
-server.initalise() ;
+// server.initalise();
+logger.initalise();
