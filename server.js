@@ -25,8 +25,12 @@ module.exports = {
 
   showConsoleOutput: false,
   restartIntervalInHours: 24,
-  restartInterval: this.restartIntervalInHours*60*60*1000,
+  restartInterval: 0,
   nw_server: {},
+
+  calculate_restart_interval() {
+    return this.restartIntervalInHours*60*60*1000;
+  },
   
   /**
    * gets the current date and time for time stamping
@@ -179,6 +183,7 @@ module.exports = {
   },
 
   initalise() {
+    this.restartInterval = this.calculate_restart_interval();
     if (!this.server_is_installed()) {
       this.install_server();
     }
