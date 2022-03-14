@@ -101,8 +101,8 @@ module.exports = {
     
     let msToRestart = tomorrow.getTime() - today.getTime()
     setTimeout(() => {
-      kill_server()
-      setInterval(kill_server, this.restartInterval);
+      this.kill_server()
+      setInterval(this.kill_server, this.restartInterval);
     }, msToRestart);
   },
   
