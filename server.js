@@ -93,13 +93,16 @@ module.exports = {
    * @param {int} restartHour what hour of a 24 hour clock to restart
    */
   start_automatic_restart(restartHour) {
-    let today = new Date()
-    let tomorrow = new Date()
+
+    console.log(this.get_time(), 'automatic restart started');
+
+    let today = new Date();
+    let tomorrow = new Date();
     
-    tomorrow.setDate(today.getDate() + 1)
-    tomorrow.setHours(restartHour, 0, 0)
+    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setHours(restartHour, 0, 0);
     
-    let msToRestart = tomorrow.getTime() - today.getTime()
+    let msToRestart = tomorrow.getTime() - today.getTime();
     setTimeout(() => {
       this.kill_server()
       setInterval(this.kill_server, this.restartInterval);
