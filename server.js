@@ -107,9 +107,17 @@ module.exports = {
     tomorrow.setHours(restartHour, 0, 0);
     
     let msToRestart = tomorrow.getTime() - today.getTime();
+
+    console.log(this.get_time(), 'automatically restarting in', msToRestart);
+
     setTimeout(() => {
+
       this.kill_server()
+
+      console.log(this.get_time(), 'now automatically restarting in', this.restartInterval);
+
       setInterval(this.kill_server, this.restartInterval);
+
     }, msToRestart);
   },
   
