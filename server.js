@@ -86,7 +86,7 @@ module.exports = {
     });
     
     this.nw_server.on("close", code => {
-      console.log(this.get_time(), `child process exited with code ${code}`);
+      console.log(this.get_time(), `server closed with code ${code}`);
       this.start_server();
     });
   
@@ -96,7 +96,7 @@ module.exports = {
    * starts begins the restart routine to automatically restart the server
    * @param {int} restartHour what hour of a 24 hour clock to restart
    */
-  start_automatic_restart(restartHour) {
+  start_automatic_restart(restartHour = 5) {
 
     console.log(this.get_time(), 'automatic restart started');
 
@@ -108,26 +108,37 @@ module.exports = {
     
     let msToRestart = tomorrow.getTime() - today.getTime();
 
-    console.log(this.get_time(), 'automatically restarting in', msToRestart);
+    console.log(this.get_time(), 'restarting in', Math.floor(msToRestart/1000/60), "minutes");
 
     setTimeout(() => {
 
-      this.kill_server()
+      this.kill_server();
 
-      console.log(this.get_time(), 'now automatically restarting in', this.restartInterval);
+      console.log(this.get_time(), 'restarting in', Math.floor(this.restartInterval/1000/60), "minutes");
 
-      setInterval(this.kill_server, this.restartInterval);
+      setInterval(() => {
+
+        this.kill_server();
+
+        console.log(this.get_time(), 'restarting in', Math.floor(this.restartInterval/1000/60), "minutes");
+
+      }, this.restartInterval);
 
     }, msToRestart);
+
   },
   
   /**
    * stops the NW server process
    */
   kill_server() {
+
+    console.log(this.get_time(), 'attempting to close the server');
+
     if (this.nw_server.pid) {
       process.kill(-this.nw_server.pid); // note - before pid. This converts a pid to a group of pids for process kill() method.
     }
+
   },
 
   install_server() {
