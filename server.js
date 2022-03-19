@@ -143,6 +143,8 @@ module.exports = {
 
   install_server() {
 
+    // TODO promisify these commands
+
     console.log(this.get_time(), "installing server");
 
     const download_url = "https://download.taleworlds.com/mb_warband_napoleonic_wars_dedicated_1174_nw_1210.zip";
@@ -188,6 +190,8 @@ module.exports = {
     console.log(this.get_time(), "finished moving files");
     console.log(this.get_time(), "installation finished");
 
+
+
   },
 
   server_is_installed() {
@@ -202,12 +206,15 @@ module.exports = {
   },
 
   initalise() {
+
     this.restartInterval = this.calculate_restart_interval();
     if (!this.server_is_installed()) {
       this.install_server();
+    } else {
+      this.start_server();
+      this.start_automatic_restart(5);
     }
-    this.start_server();
-    this.start_automatic_restart(5);
+
   },
   
 
