@@ -1,6 +1,6 @@
 {
   "name": "node-warband-manager",
-  "version": "1.0.0",
+  "version": "12/03/2022",
   "description": "Node.js server manager for mount and blade warband",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/C-N-G/node-warband-manager/issues"
   },
-  "homepage": "https://github.com/C-N-G/node-warband-manager#readme"
+  "homepage": "https://github.com/C-N-G/node-warband-manager#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.9",
+    "fs-extra": "^10.0.1"
+  }
 }
